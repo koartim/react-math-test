@@ -4,7 +4,7 @@ export class Multiplication extends Component {
     render() {
         return (
             <div>
-                
+                <h1>Multiplication</h1>
             </div>
         )
     }

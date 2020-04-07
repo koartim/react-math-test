@@ -7,11 +7,11 @@ class Navbar extends React.Component {
     render() {
         return(
             <div className="Navbar">
-                <NavLink exact to="/addition"> Addition </NavLink>
-                <NavLink exact to="/subtraction"> Subtraction </NavLink>
-                <NavLink exact to="/multiplication"> Multiplication </NavLink>
-                <NavLink exact to="/division"> Division </NavLink>
-                <NavLink exact to="/"> Home </NavLink>
+                <NavLink activeClassName="Navbar-active" exact to="/addition"> Addition </NavLink>
+                <NavLink activeClassName="Navbar-active" exact to="/subtraction"> Subtraction </NavLink>
+                <NavLink activeClassName="Navbar-active" exact to="/multiplication"> Multiplication </NavLink>
+                <NavLink activeClassName="Navbar-active" exact to="/division"> Division </NavLink>
+                <NavLink activeClassName="Navbar-active" exact to="/"> Home </NavLink>
             </div>
         )
     }

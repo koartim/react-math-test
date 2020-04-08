@@ -3,11 +3,14 @@ import React from 'react'
 export class Multiplication extends React.Component {
 
   state = {
-    answer: ""
+    answer: "",
+    input: "",
+    num1: Math.floor(Math.random(Math.ceil()) * Math.random() * 10 ).toString(),
+    num2: Math.floor(Math.random(Math.ceil()) * Math.random() * 10).toString(),
   }
 
   componentDidMount() {
-    fetch('http://api.mathjs.org/v4/?expr=2*(7-3)')
+    fetch(`http://api.mathjs.org/v4/?expr=2*(${this.state.num1}*${this.state.num2})`)
       .then(rsp => rsp.json())
       .then(data => {
         this.setState({
@@ -16,12 +19,12 @@ export class Multiplication extends React.Component {
       })
   }
 
+
     render() {
-      const answer = this.state.answer
         return (
             <div>
                 <h1>Multiplication</h1>
-                  <p>{answer}</p>
+
             </div>
         )
     }

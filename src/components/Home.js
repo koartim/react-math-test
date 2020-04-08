@@ -5,6 +5,7 @@ export class Home extends Component {
         return (
             <div>
                 <h1>Speed Math</h1>
+                <h3>A React Math Quiz App</h3>
             </div>
         )
     }

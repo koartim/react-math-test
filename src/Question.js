@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import './App.css';
 
 export class Question extends Component {
 
     state = {
-        response: ""
+        response: "",
+        count: this.props.count,
+        isCorrect: null
     }
 
     handleChange = (e) => {
@@ -19,22 +22,27 @@ export class Question extends Component {
         } else {
             alert(`incorrect the answer was ${this.props.answer}` )
         }
-        this.setState({response: ""})
+        this.setState({response: "", count: this.state.count + 1})
     }
 
 
     render() {
         const {num1, num2, questionType } = this.props
-        return (
-            <div>
-                {questionType === "subtraction" ? <h3>Evaluate: {num1} - {num2}</h3> : null}
-                <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-                    <label htmlFor="response">Response </label>
-                    <input type="text" name="response"/>
-                    <button> Submit </button>
-                </form>
-            </div>
-        )
+        if (this.state.count === 10) {
+            return <h1>You have reached your question limit</h1>
+        } else {
+            return (
+                <div className="App">
+                    {questionType === "subtraction" ? <h3>Evaluate: {num1} - {num2}</h3> : null}
+                    <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+                        <label htmlFor="response">Response </label>
+                        <input type="text" name="response"/>
+                        <button className="App-button"> Submit </button>
+                    </form>
+                </div>
+            )
+        }
+        
     }
 }
 

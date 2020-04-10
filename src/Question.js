@@ -32,22 +32,26 @@ export class Question extends Component {
         if (this.state.response === this.state.answer) {
             this.setState({response: ""}, alert("correct"))
             localStorage.setItem(Math.random(), JSON.stringify(localStorage.length + 1))
+
         } else {
-            alert(`incorrect the answer was ${this.props.answer}` )
-            this.setState({})
+            this.setState({response: ""}, alert(`incorrect the answer was ${this.state.answer}`))
+            localStorage.setItem(Math.random(), JSON.stringify(localStorage.length + 1))
         }
+    }
+    componentWillUnmount() {
+        localStorage.clear()
     }
 
     render() {
         const {num1, num2} = this.state
-        if (localStorage.length === 10) {
+        if (localStorage.length > 10) {
             localStorage.clear()
             return <h1>You have reached your question limit</h1>
             
         } else {
             return (
                 <div className="App">
-                   <h3>Evaluate: {num1} {this.props.questionType} {num2}</h3> 
+                    {this.props.questionType === "%2B" ? <h3>Evaluate {num1} + {num2}</h3> : <h3>Evaluate: {num1} {this.props.questionType} {num2}</h3>}
                     <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
                         <label htmlFor="response">Response </label>
                         <input type="text" name="response" value={this.state.response}/>

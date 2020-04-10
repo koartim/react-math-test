@@ -4,28 +4,23 @@ import Question from '.././Question';
 export class Subtraction extends Component {
 
     state = {
-        answer: "",
-        input: "",
-        num1: Math.floor(Math.random(Math.ceil()) * Math.random() * 10 ).toString(),
-        num2: Math.floor(Math.random(Math.ceil()) * Math.random() * 10 + 1).toString(),
-        questionType: "subtraction"
+        questionType: "-",
+        count: 0
       }
 
-    componentDidMount() {
-        fetch(`http://api.mathjs.org/v4/?expr=${this.state.num1}-${this.state.num2}`)
-        .then(rsp => rsp.json())
-        .then(data => {
-          this.setState({
-            answer: data.toString()
-          })
+    upDateCount = () => {
+        this.setState({
+            count: {...this.state.count + 1}
         })
     }
 
     render() {
+        const {num1, num2, questionType, count} = this.state
         return (
             <div>
                 <h1>Subtraction</h1>
-                 <Question questionType={this.state.questionType} answer={this.state.answer} num1={this.state.num1} num2={this.state.num2}/>
+        <h3>{count}</h3>
+                 <Question upDateCount={this.updateCount} count={count} questionType={questionType} num1={num1} num2={num2}/>
             </div>
         )
     }
